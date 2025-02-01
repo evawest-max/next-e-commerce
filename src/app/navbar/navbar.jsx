@@ -8,7 +8,7 @@ function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <nav className="flex justify-between items-center p-4 shadow-md bg-white relative">
+        <nav className="flex justify-between items-center p-4 shadow-md bg-white sticky top-0 left-0 w-full z-50">
             <h2 className="text-lg sm:text-xl font-bold text-orange-500 flex justify-center items-center">
                <img src="https://png.pngtree.com/png-clipart/20200720/original/pngtree-orange-logo-design-png-image_4781563.jpg" alt="logo"  width="40px" height="40px"/> Mr Smart Wears
             </h2>
