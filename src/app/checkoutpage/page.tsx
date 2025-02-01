@@ -1,36 +1,35 @@
-"use client"
-import { useContext, useEffect, useState, useCallback } from "react";
+"use client";
+import { useContext, useEffect, useState, useCallback, ChangeEvent } from "react";
 import { BiArrowBack } from "react-icons/bi";
-import { useFlutterwave } from "flutterwave-react-v3";
-import Link from 'next/link'
-// import { Link, Navigate } from "react-router-dom";
+import { useFlutterwave, FlutterwaveConfig, PaymentResponse } from "flutterwave-react-v3";
+import Link from "next/link";
 import { CartContext } from "../context folder/appContext";
 
 export default function Checkout() {
   const cart = useContext(CartContext);
-  const [address, setAddress] = useState("");
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [successfully, setSuccessfully] = useState(false);
-  const apiKey = "FLWPUBK_TEST-cb119a9a9127ae014d8a8ddd16e081da-X";
+  const [address, setAddress] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [name, setName] = useState<string>("");
+  const [phone, setPhone] = useState<string>("");
+  const [successfully, setSuccessfully] = useState<boolean>(false);
+  const apiKey: string = "FLWPUBK_TEST-cb119a9a9127ae014d8a8ddd16e081da-X";
 
-  const sanitizedAmount = cart.totalCart;
+  const sanitizedAmount: number = parseFloat(cart.totalCart) || 0;
 
   useEffect(() => {
     if (successfully) {
-      cart.addToOrders(localStorage.getItem("nameobject"), address, phone);
+      cart.addToOrders(localStorage.getItem("nameobject") || "", address, phone);
       console.log("Transaction successful");
       alert(
         "Thank you, transaction successful. Our delivery agent will be in touch with you soon."
       );
     }
-  }, [successfully]);
+  }, [successfully, address, phone, cart]);
 
-  const config = {
+  const config: FlutterwaveConfig = {
     public_key: apiKey,
     tx_ref: Date.now().toString(),
-    amount: parseFloat(sanitizedAmount),
+    amount: sanitizedAmount,
     currency: "NGN",
     payment_options: "card,mobilemoney,ussd",
     customer: {
@@ -60,7 +59,7 @@ export default function Checkout() {
     }
 
     handleFlutterPayment({
-      callback: (response) => {
+      callback: (response: PaymentResponse) => {
         if (response) {
           setSuccessfully(true);
         } else {
@@ -69,17 +68,13 @@ export default function Checkout() {
         closePaymentModal();
       },
       onClose: () => {
-        alert(
-          successfully
-            ? "Payment was successful"
-            : "Payment was not successful"
-        );
+        alert(successfully ? "Payment was successful" : "Payment was not successful");
       },
     });
   };
 
   const handleInputChange = useCallback(
-    (setter) => (e) => {
+    (setter: React.Dispatch<React.SetStateAction<string>>) => (e: ChangeEvent<HTMLInputElement>) => {
       setter(e.target.value);
     },
     []
@@ -88,7 +83,7 @@ export default function Checkout() {
   return (
     <div className="App">
       <div className="flex items-center space-x-2 p-4">
-        <Link href="/cart" style={{color:"orangered"}} className="text-orange-500 flex justify-center items-center gap-3">
+        <Link href="/cart" className="text-orange-500 flex justify-center items-center gap-3">
           <BiArrowBack />
           <h4 className="text-lg font-semibold text-gray-500">Back to cart</h4>
         </Link>
