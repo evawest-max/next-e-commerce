@@ -4,6 +4,7 @@ import instagram from "./instagram.svg";
 import whatsapp from "./whatsapp.svg";
 import copyright from "./copyright.svg";
 import Link from 'next/link'
+import Image from 'next/image'
 
 function Footer() {
     return (
@@ -30,13 +31,13 @@ function Footer() {
                         {/* Social Media Icons */}
                         <div className="flex md:justify-start justify-center gap-4 mt-4">
                         <Link href="#">
-                            <img src={facebook} alt="facebook" className="w-8 h-8 hover:scale-110 transition" />
+                            <Image src={facebook} alt="facebook" className="w-8 h-8 hover:scale-110 transition" />
                             </Link>
                             <Link href="#">
-                            <img src={instagram} alt="instagram" className="w-8 h-8 hover:scale-110 transition" />
+                            <Image src={instagram} alt="instagram" className="w-8 h-8 hover:scale-110 transition" />
                             </Link>
                             <Link href="https://api.Whatsapp.com/send?phone=2347032397184&text=I%27m+having+an+issue+can+you+please+help+me+resolve+it">
-                                <img src={whatsapp} alt="whatsapp" className="w-8 h-8 hover:scale-110 transition" />
+                                <Image src={whatsapp} alt="whatsapp" className="w-8 h-8 hover:scale-110 transition" />
                             </Link>
                         </div>
 
@@ -58,7 +59,7 @@ function Footer() {
 
                 {/* Copyright */}
                 <p className="text-center text-sm text-gray-500">
-                    <img src={copyright} alt="copyright" className="inline-block w-4 h-4 mb-1" /> 
+                    <Image src={copyright} alt="copyright" className="inline-block w-4 h-4 mb-1" /> 
                     2025 Ebunolwa Akinwumi. All Rights Reserved.
                 </p>
             </div>
