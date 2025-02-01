@@ -8,8 +8,8 @@ import CartContent from "../cart component/cart component/cart content";
 import { CartContext } from "../context folder/appContext";
 import { motion } from "framer-motion";
 
-export let changeAddToCart = false;
-export let productsIDInTheCartListpagetotal = 0;
+// export let changeAddToCart = false;
+// export let productsIDInTheCartListpagetotal = 0;
 
 function Cart() {
     const [deliveryFee, setDeliveryFee] = useState(1500);
