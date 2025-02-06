@@ -13,7 +13,7 @@ export default function Checkout() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [successfully, setSuccessfully] = useState(false);
-  const apiKey = "FLWPUBK_TEST-cb119a9a9127ae014d8a8ddd16e081da-X";
+  const apiKey = process.env.NEXT_PUBLIC_API_URL
 
   const sanitizedAmount = cart.totalCart;
 
