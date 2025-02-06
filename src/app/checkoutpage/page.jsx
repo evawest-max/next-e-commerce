@@ -13,7 +13,7 @@ export default function Checkout() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [successfully, setSuccessfully] = useState(false);
-  const apiKey = process.env.NEXT_PUBLIC_API_URL
+  const apiKey = process.env.NEXT_PUBLIC_API_URL;
 
   const sanitizedAmount = cart.totalCart;
 
